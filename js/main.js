@@ -6,11 +6,11 @@ const cityInput = document.querySelector("#city-input");
 const searchBtn = document.querySelector("#search");
 
 const cityElement = document.querySelector("#city");
-const tempElement = document.querySelector("temperature span");
+const tempElement = document.querySelector("#temperature span");
 const descElement = document.querySelector("#description");
-const weatherElement = document.querySelector("#weather-icon");
+const weatherIconElement = document.querySelector("#weather-icon");
 const countryElement = document.querySelector("#country");
-const umidityElement = document.querySelector("#umidity span");
+const humidityElement = document.querySelector("#humidity span");
 const windElement = document.querySelector("#wind span");
 
 //Funções
@@ -21,14 +21,25 @@ const getWeatherData = async(city)=>{
     const res= await fetch(apiWeatherURL);
     const data = await res.json();
 
-    console.log(data)
+    console.log(data.name)
+    console.log(data.main.temp)
+    console.log(data.sys.country)
+    return(data)
 };
 
-const showWeatherData = (city) =>{
-    getWeatherData(city);
+//Deve ser asyc para esperar os dados da API
+const showWeatherData = async (city) =>{
+    const data = await getWeatherData(city);
+
+    cityElement.innerText = data.name;
+    tempElement.innerText = parseInt(data.main.temp);//Fazer com que a temperatura tenha valores arredondados
+    descElement.innerText = data.weather[0].description;
+    weatherIconElement.setAttribute("src",`http://openweathermap.org/img/wn/${data.weather[0].icon}.png`);
+    countryElement.setAttribute("src",apiCountryURL+data.sys.country);
+    humidityElement.innerText = `${data.main.humidity}%`;
+    windElement.innerText = `${data.wind.speed}km/h`
+
 };
-
-
 
 //Eventos
 searchBtn.addEventListener("click",(e)=>{

@@ -99,13 +99,18 @@ body {
     margin: 0.6rem 0;
 }
 
+#description{
+    font-weight: bold;
+    text-transform: capitalize;/*A primeira letra fica maiúscula*/
+}
+
 #details-container{
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-#details-container #umidity{
+#details-container #humidity{
     border-right: 1px solid var(--black-color);
     margin: 0.6rem;
     padding: 0.6rem;
