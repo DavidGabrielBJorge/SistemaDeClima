@@ -64,3 +64,58 @@ body {
     border-radius: 4px;
     cursor: pointer;
 }
+
+/*Informações do clima*/
+#weather-data{
+    border-top: 1px solid var(--black-color);
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    text-align: center;
+}
+#weather-data h2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0.6rem;
+}
+
+/*Icone do weather data*/
+#weather-data h2 i{
+    font-size: 1rem;
+}
+
+#weather-data span{
+    margin: 0.6rem;
+}
+
+#country{
+    height: 15px;
+}
+
+#description-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0.6rem 0;
+}
+
+#details-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#details-container #umidity{
+    border-right: 1px solid var(--black-color);
+    margin: 0.6rem;
+    padding: 0.6rem;
+}
+
+
+
+
+
+
+
+
+
