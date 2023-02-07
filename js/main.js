@@ -22,26 +22,34 @@ const getWeatherData = async(city)=>{
 
     const res= await fetch(apiWeatherURL);
     const data = await res.json();
-
-    console.log(data.name)
+    
+    if(data.cod == "404"){
+        console.log("Erro")
+    }
+    else{
+        console.log(data.name)
     console.log(data.main.temp)
     console.log(data.sys.country)
     return(data)
+    }
+    
 };
 
 //Deve ser asyc para esperar os dados da API
 const showWeatherData = async (city) =>{
     const data = await getWeatherData(city);
 
-    cityElement.innerText = data.name;
-    tempElement.innerText = parseInt(data.main.temp);//Fazer com que a temperatura tenha valores arredondados
-    descElement.innerText = data.weather[0].description;
-    weatherIconElement.setAttribute("src",`http://openweathermap.org/img/wn/${data.weather[0].icon}.png`);
-    countryElement.setAttribute("src",apiCountryURL+data.sys.country);
-    humidityElement.innerText = `${data.main.humidity}%`;
-    windElement.innerText = `${data.wind.speed}km/h`
+        cityElement.innerText = data.name;
+        tempElement.innerText = parseInt(data.main.temp);//Fazer com que a temperatura tenha valores arredondados
+        descElement.innerText = data.weather[0].description;
+        weatherIconElement.setAttribute("src",`http://openweathermap.org/img/wn/${data.weather[0].icon}.png`);
+        countryElement.setAttribute("src",apiCountryURL+data.sys.country);
+        humidityElement.innerText = `${data.main.humidity}%`;
+        windElement.innerText = `${data.wind.speed}km/h`
 
-    weatherContainer.classList.remove("hide");//Vai remover a classe hide, mostrando os dados
+        weatherContainer.classList.remove("hide");//Vai remover a classe hide, mostrando os dados
+    
+    
 };
 
 //Eventos
@@ -50,4 +58,11 @@ searchBtn.addEventListener("click",(e)=>{
 
     const city = cityInput.value;
     showWeatherData(city);
+})
+
+cityInput.addEventListener("keyup",(e)=>{
+    if(e.code=="Enter"){
+        const city = e.target.value;
+        showWeatherData(city);
+    }
 })
