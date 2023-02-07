@@ -13,6 +13,8 @@ const countryElement = document.querySelector("#country");
 const humidityElement = document.querySelector("#humidity span");
 const windElement = document.querySelector("#wind span");
 
+const weatherContainer = document.querySelector("#weather-data");
+
 //Funções
 //Por ser uma API sua função deve ser assíncrona, pois os dados podem demorar para carregar
 const getWeatherData = async(city)=>{
@@ -39,6 +41,7 @@ const showWeatherData = async (city) =>{
     humidityElement.innerText = `${data.main.humidity}%`;
     windElement.innerText = `${data.wind.speed}km/h`
 
+    weatherContainer.classList.remove("hide");//Vai remover a classe hide, mostrando os dados
 };
 
 //Eventos
