@@ -12,8 +12,8 @@ const weatherIconElement = document.querySelector("#weather-icon");
 const countryElement = document.querySelector("#country");
 const humidityElement = document.querySelector("#humidity span");
 const windElement = document.querySelector("#wind span");
-const errorMessageContainer = document.querySelector("#message-error");
-
+const errorMessageInput = document.querySelector("#message-error");
+const errorMessageServer = document.querySelector("#message-error-server");
 const weatherContainer = document.querySelector("#weather-data");
 
 //Funções
@@ -26,7 +26,11 @@ const getWeatherData = async(city)=>{
     
     if(data.cod == "404"){
         weatherContainer.classList.add("hide");
-        errorMessageContainer.classList.remove("hide");
+        errorMessageInput.classList.remove("hide");
+    }
+    else if(data.cod == "502"){
+        weatherContainer.classList.add("hide");
+        errorMessageServer.classList.remove("hide");
     }
     else{
     console.log(data.name)
@@ -39,7 +43,8 @@ const getWeatherData = async(city)=>{
 
 //Deve ser asyc para esperar os dados da API
 const showWeatherData = async (city) =>{
-    errorMessageContainer.classList.add("hide");
+    errorMessageInput.classList.add("hide");
+    errorMessageServer.classList.add("hide");
     const data = await getWeatherData(city);
 
     cityElement.innerText = data.name;
