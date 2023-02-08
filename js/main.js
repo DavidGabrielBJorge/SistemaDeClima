@@ -12,6 +12,7 @@ const weatherIconElement = document.querySelector("#weather-icon");
 const countryElement = document.querySelector("#country");
 const humidityElement = document.querySelector("#humidity span");
 const windElement = document.querySelector("#wind span");
+const errorMessageContainer = document.querySelector("#message-error");
 
 const weatherContainer = document.querySelector("#weather-data");
 
@@ -24,10 +25,11 @@ const getWeatherData = async(city)=>{
     const data = await res.json();
     
     if(data.cod == "404"){
-        console.log("Erro")
+        weatherContainer.classList.add("hide");
+        errorMessageContainer.classList.remove("hide");
     }
     else{
-        console.log(data.name)
+    console.log(data.name)
     console.log(data.main.temp)
     console.log(data.sys.country)
     return(data)
@@ -37,17 +39,18 @@ const getWeatherData = async(city)=>{
 
 //Deve ser asyc para esperar os dados da API
 const showWeatherData = async (city) =>{
+    errorMessageContainer.classList.add("hide");
     const data = await getWeatherData(city);
 
-        cityElement.innerText = data.name;
-        tempElement.innerText = parseInt(data.main.temp);//Fazer com que a temperatura tenha valores arredondados
-        descElement.innerText = data.weather[0].description;
-        weatherIconElement.setAttribute("src",`http://openweathermap.org/img/wn/${data.weather[0].icon}.png`);
-        countryElement.setAttribute("src",apiCountryURL+data.sys.country);
-        humidityElement.innerText = `${data.main.humidity}%`;
-        windElement.innerText = `${data.wind.speed}km/h`
+    cityElement.innerText = data.name;
+    tempElement.innerText = parseInt(data.main.temp);//Fazer com que a temperatura tenha valores arredondados
+    descElement.innerText = data.weather[0].description;
+    weatherIconElement.setAttribute("src",`http://openweathermap.org/img/wn/${data.weather[0].icon}.png`);
+    countryElement.setAttribute("src",apiCountryURL+data.sys.country);
+    humidityElement.innerText = `${data.main.humidity}%`;
+    windElement.innerText = `${data.wind.speed}km/h`
 
-        weatherContainer.classList.remove("hide");//Vai remover a classe hide, mostrando os dados
+    weatherContainer.classList.remove("hide");//Vai remover a classe hide, mostrando os dados
     
     
 };
