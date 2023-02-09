@@ -66,13 +66,13 @@ body {
 }
 
 /*Informações do clima*/
-#weather-data{
+#data-weather{
     border-top: 1px solid var(--black-color);
     margin-top: 1.5rem;
     padding-top: 1.5rem;
     text-align: center;
 }
-#weather-data h2{
+#data-weather h2{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -80,11 +80,11 @@ body {
 }
 
 /*Icone do weather data*/
-#weather-data h2 i{
+#data-weather h2 i{
     font-size: 1rem;
 }
 
-#weather-data span{
+#data-weather span{
     margin: 0.6rem;
 }
 
@@ -92,7 +92,7 @@ body {
     height: 15px;
 }
 
-#description-container{
+#container-descriptionr{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -104,13 +104,13 @@ body {
     text-transform: capitalize;/*A primeira letra fica maiúscula*/
 }
 
-#details-container{
+#container-details{
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-#details-container #humidity{
+#container-details #humidity{
     border-right: 1px solid var(--black-color);
     margin: 0.6rem;
     padding: 0.6rem;
@@ -118,7 +118,7 @@ body {
 
 @media (max-width: 1300px) {
     body {
-        height: 60vh;
+        height: 70vh;
     }
  }
 

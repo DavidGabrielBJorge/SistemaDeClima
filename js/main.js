@@ -14,7 +14,7 @@ const humidityElement = document.querySelector("#humidity span");
 const windElement = document.querySelector("#wind span");
 const errorMessageInput = document.querySelector("#message-error");
 const errorMessageServer = document.querySelector("#message-error-server");
-const weatherContainer = document.querySelector("#weather-data");
+const weatherContainer = document.querySelector("#data-weather");
 
 //Funções
 //Por ser uma API sua função deve ser assíncrona, pois os dados podem demorar para carregar
@@ -30,6 +30,7 @@ const getWeatherData = async(city)=>{
     }
     else if(data.cod == "502"){
         weatherContainer.classList.add("hide");
+        errorMessageInput.classList.add("hide");
         errorMessageServer.classList.remove("hide");
     }
     else{
